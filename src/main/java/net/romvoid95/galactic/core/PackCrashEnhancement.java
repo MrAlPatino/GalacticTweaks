@@ -1,11 +1,17 @@
 package net.romvoid95.galactic.core;
 
-import java.util.*;
-import java.util.Map.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
-import net.minecraftforge.fml.common.*;
-import net.minecraftforge.fml.common.versioning.*;
-import net.romvoid95.galactic.feature.*;
+import net.minecraftforge.fml.common.ICrashCallable;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.ModContainer;
+import net.minecraftforge.fml.common.versioning.ArtifactVersion;
+import net.romvoid95.galactic.modules.galacticraft.GalacticraftModuleConfig;
 
 public class PackCrashEnhancement implements ICrashCallable {
 	private static List<ModContainer> loaded = Loader.instance().getActiveModList();
@@ -90,7 +96,7 @@ public class PackCrashEnhancement implements ICrashCallable {
 	}
 
 	private void UhOhACrash() {
-		if (FeatureConfigs.SEPERATE_ADDONPLANETS) {
+		if (GalacticraftModuleConfig.SEPERATE_ADDONPLANETS) {
 			builder.append(setter);
 			builder.append(setter);
 			builder.append(setter + "\t\t\t\t\t~~~~~~~~~~ NOTICE ~~~~~~~~~~");

@@ -1,14 +1,18 @@
 package net.romvoid95.galactic.core.version;
 
-import static net.romvoid95.galactic.Info.*;
+import static net.romvoid95.galactic.Info.NAME;
 
-import java.io.*;
-import java.net.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
-import com.google.gson.*;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
-import net.romvoid95.api.versioning.*;
-import net.romvoid95.galactic.*;
+import net.romvoid95.api.versioning.Version;
+import net.romvoid95.galactic.core.GCTLog;
 
 public class ThreadVersionChecker extends Thread {
 
@@ -21,24 +25,24 @@ public class ThreadVersionChecker extends Thread {
 	@Override
 	public void run() {
 		try {
-			GalacticTweaks.LOG.info("Starting GalacticTweaks Version Check Thread");
+			GCTLog.info("Starting GalacticTweaks Version Check Thread");
 
 			VersionChecker.updateVersion = getLatestVersion();
 
 			if(VersionChecker.updateVersion.isGreaterThan(VersionChecker.currentRunningVersion)) {
 				VersionChecker.notifyForUpdate = true;
 			}
-			GalacticTweaks.LOG.info("GalacticTweaks Version Check Finished");
+			GCTLog.info("GalacticTweaks Version Check Finished");
 		} catch (Exception e) {
-			GalacticTweaks.LOG.error("GalacticTweaks Version Check Failed", e);
+			GCTLog.error("GalacticTweaks Version Check Failed", e);
 			VersionChecker.checkThreadFailed  = true;
 		}
 
 		if(!VersionChecker.checkThreadFailed) {
 			if(VersionChecker.notifyForUpdate) {
-				GalacticTweaks.LOG.info("GalacticTweaks Update Found!");
+				GCTLog.info("GalacticTweaks Update Found!");
 			} else {
-				GalacticTweaks.LOG.info("GalacticTweaks is up to date");
+				GCTLog.info("GalacticTweaks is up to date");
 			}
 		}
 		VersionChecker.checkThreadDone = true;
@@ -63,7 +67,7 @@ public class ThreadVersionChecker extends Thread {
 				return new Version(version);
 			}
 		} catch (Exception e) {
-			GalacticTweaks.LOG.error("There was an issue communicating with the CurseAPI");
+			GCTLog.error("There was an issue communicating with the CurseAPI");
 		}
 		return null;
 	}
