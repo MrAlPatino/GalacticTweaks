@@ -40,35 +40,29 @@ String GCBuild = "261"
 String GCVersion = "1.12.2-4.0.2.${GCBuild}"
 
 repositories {
-	ivy {
-		url "https://micdoodle8.com/new-builds/"
-		layout 'pattern', {
-			artifact "[organization]/${GCBuild}/[module]-[revision].jar"
-		}
-		metadataSources {
-			artifact()
-		}
-	}
-	mavenCentral()
-	mavenLocal()
+    mavenCentral()
+    mavenLocal()
     maven { url 'https://jitpack.io' }
     maven { url "https://maven.minecraftforge.net/" }
-	maven { url "https://www.cursemaven.com" }
-	maven { url "http://dvs1.progwml6.com/files/maven" }
-	maven { url "http://maven.ic2.player.to" }
-	maven { url "https://blamejared.com/maven" }
+    maven { url "http://dvs1.progwml6.com/files/maven" }
+    maven { url "http://maven.ic2.player.to" }
+    maven { url "https://blamejared.com/maven" }
+    maven {
+        url "https://maven.cleanroommc.com"
+    }
+    maven {
+        name 'TeamGalacticraft'
+        url 'https://repo.galacticraft.net/repository/maven-public/'
+    }
 }
 
-dependencies {
-	compile 'com.github.ReadOnlyDevelopment:ZenScript:1.0.0'
 
-	compile "GC-1.12-dev:GalacticraftCore-Dev:${GCVersion}"
-	compile "GC-1.12-dev:Galacticraft-API:${GCVersion}"
-	compile "GC-1.12-dev:Galacticraft-Planets-Dev:${GCVersion}"
-	compile "GC-1.12-dev:MicdoodleCore-Dev:${GCVersion}"
-	
-	compile 'com.fasterxml.jackson.core:jackson-core:2.12.3'
-	compile 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
+dependencies {
+    
+    deobfCompile "dev.galacticraft:galacticraft-legacy:4.0.3-SNAPSHOT"
+    
+    compile 'com.fasterxml.jackson.core:jackson-core:2.12.3'
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
 
     compileOnly 'org.projectlombok:lombok:1.18.20'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
@@ -76,19 +70,20 @@ dependencies {
     testCompileOnly 'org.projectlombok:lombok:1.18.20'
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
 
-	compile "com.mjr.extraplanets:ExtraPlanets:1.12.2-0.7.3:dev"
-	
-	compile "mezz.jei:jei_${mc_version}:4.16.1.302:api"
-	runtime "mezz.jei:jei_${mc_version}:4.16.1.302"
-	
-	runtime "com.mjr.mjrlegendslib:MJRLegendsLib:1.12.2-1.2.1"
-	runtime "net.industrial-craft:industrialcraft-2:2.8.99-ex112:api"
-	
-	compile "curse.maven:asmodeuscore-0.0.25-303101:3231302"
-	compile "curse.maven:galaxyspace-2.0.16-238770:3235468"
-	compile "curse.maven:zollerngalaxy-2.0.23-241940:3187752"
-	compile "curse.maven:moreplanets-2.2.1_280-261990:3165054"
-	runtime "curse.maven:stevekunglib-1.1.9-296019:3051420"
+    deobfCompile "curse.maven:extraplanets-0.7.3-241291:3614752"
+    
+    compile "mezz.jei:jei_${mc_version}:4.16.1.302:api"
+    runtime "mezz.jei:jei_${mc_version}:4.16.1.302"
+    
+    runtime "curse.maven:mjrlegendslib-1.2.1-284331:3344068"
+    runtime "net.industrial-craft:industrialcraft-2:2.8.99-ex112:api"
+    
+    deobfCompile "zone.rong:mixinbooter:4.2"
+    deobfCompile "curse.maven:asmodeuscore-303101:3672914"
+    deobfCompile "curse.maven:galaxyspace-238770:3676089"
+    deobfCompile "curse.maven:zollerngalaxy-241940:3680055"
+    deobfCompile "curse.maven:moreplanets-261990:3595697"
+    deobfCompile "curse.maven:stevekunglib-296019:3636234:deobf"
 }
 
 minecraft {
