@@ -18,7 +18,7 @@
     <a href=""></a>
     <img src="https://badgen.net/badge/Made%20With/Love/pink"
          alt="Made With love">
-   <img src="https://badgen.net/badge/Edited%20With/weed/green">
+   <img src="https://badgen.net/badge/Edited%20With/Weed/green">
 </p>
 <p align="center">
 <a href="https://www.curseforge.com/minecraft/mc-mods/galactictweaks">
